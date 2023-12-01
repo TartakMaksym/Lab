@@ -22,21 +22,21 @@ r = tk.Tk()
 r.title("Чистокол")
 
 wl = tk.Label(r, text="Введіть слово:")
-wl.grid(row=0, column=0, sticky="w")
+wl.pack()
 
 ew = tk.Entry(r)
-ew.grid(row=0, column=1)
+ew.pack()
 
 nl = tk.Label(r, text="Введіть число через скільки буде братися буква:")
-nl.grid(row=1, column=0, sticky="w")
+nl.pack()
 
 em = tk.Entry(r)
-em.grid(row=1, column=1)
+em.pack()
 
 cb = tk.Button(r, text="Результат!", command=calculate)
-cb.grid(row=2, column=0, columnspan=2, pady=10)
+cb.pack()
 
 rl = tk.Label(r, text="")
-rl.grid(row=3, column=0, columnspan=2)
+rl.pack()
 
 r.mainloop()
