@@ -1,42 +1,63 @@
-import tkinter as tk
+from tkinter import *
+from tkinter import messagebox
 
-def calculate():
-    w = ew.get().replace(" ", "")
-    s = int(em.get())
+root = Tk()
+def shifr():
+    text1 = LoginInput.get()
+    text = list(text1)
+    key = int(keyInput.get())
+    result_list = []
+    part = ""
+    completed = ""
+    second_key = key
+    a = 0
+    while a <= key + 1:
+        for i in range(key - 1, len(text), second_key):
+            part += text[i]
+        result_list.append(part)
+        key = key - 1
+        part = ""
+        a += 1
+    for i in result_list:
+        completed += str(i)
+    info = completed
+    result_label.config(text=info)
+
     
-    t1 = ''.join(w[i] for i in range(1, len(w), 2))
-    t2 = ''.join(w[i] for i in range(1, len(w), 3))
-    t3 = ''.join(w[i] for i in range(2, len(w), 4))
-    t4 = ''.join(w[i] for i in range(3, len(w), 5))
+    messagebox.showinfo(title='зашифровано', message = info)
 
-    if s == 1:
-        rl.config(text="Через одну букву: " + t1)
-    elif s == 2:
-        rl.config(text="Через дві букви: " + t2)
-    elif s == 3:
-        rl.config(text="Через три букви: " + t3)
-    else:
-        rl.config(text="Через чотири букви: " + t4)
+root['bg'] = 'white'
+root.title('Шифрування')
+root.wm_attributes('-alpha', 1)
+root.geometry('600x550')
 
-r = tk.Tk()
-r.title("Чистокол")
+root.resizable(width=False, height=False)
 
-wl = tk.Label(r, text="Введіть слово:")
-wl.pack()
+canvas = Canvas(root, height=600, width=550)
+canvas.pack()
 
-ew = tk.Entry(r)
-ew.pack()
+frame = Frame(root, bg='#C0C0C0')
+frame.place(relwidth=0.7, relheight=0.7,
+            relx=0.15, rely=0.15)
+title = Label(frame, text='розшифруй', bg='gray', font=40)
+title.pack()
 
-nl = tk.Label(r, text="Введіть число через скільки буде братися буква:")
-nl.pack()
 
-em = tk.Entry(r)
-em.pack()
 
-cb = tk.Button(r, text="Результат!", command=calculate)
-cb.pack()
 
-rl = tk.Label(r, text="")
-rl.pack()
 
-r.mainloop()
+btn = Button(frame, text='button', bg='#808080', font=30, command=shifr)
+btn.pack()
+
+LoginInput = Entry(frame, bg='#83CCF3')
+LoginInput.pack()
+
+keyInput = Entry(frame, bg='#83CCF3')
+keyInput.pack()
+
+result_label = Label(frame, bg='#83CCF3',)
+#result_label.place(relwidth=1.2, relheight=1.2, relx=0.45, rely=0.45)
+result_label.pack()
+
+
+root.mainloop()
