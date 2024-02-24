@@ -1,0 +1,6 @@
+resistor1 = float(input("Введіть опір першого резистора: "))
+resistor2 = float(input("Введіть опір другого резистора: "))
+
+equivalent_resistance = (resistor1 * resistor2) / (resistor1 + resistor2)
+
+print("Еквівалентний опір у паралельному з'єднанні резисторів: ", equivalent_resistance)
