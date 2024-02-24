@@ -1,0 +1,39 @@
+class MobilePhone:
+    def __init__(self, manufacturer, model, memory, wide_camera, nfc, price):
+        self.manufacturer = manufacturer
+        self.model = model
+        self.memory = memory
+        self.wide_camera = wide_camera
+        self.nfc = nfc
+        self.price = price
+
+def input_phones():
+    phones = []
+    for i in range(1, 4):  # ввести не менше 10 записів
+        print(f"Введіть дані про телефон #{i}:")
+        manufacturer = input("Виробник: ")
+        model = input("Модель: ")
+        memory = input("Об'єм пам'яті: ")
+        wide_camera = input("Наявність ширококутної камери (так/ні): ").lower() == 'так'
+        nfc = input("Наявність NFC (так/ні): ").lower() == 'так'
+        price = float(input("Ціна: "))
+        phones.append(MobilePhone(manufacturer, model, memory, wide_camera, nfc, price))
+    return phones
+
+def find_motorola_phones_without_wide_camera_and_nfc(phones):
+    motorola_phones = [phone for phone in phones if phone.manufacturer.lower() == 'motorola' 
+                       and not phone.wide_camera and phone.nfc]
+    return motorola_phones
+
+def print_phones(phones):
+    if phones:
+        print("Результат:")
+        for phone in phones:
+            print(f"Виробник: {phone.manufacturer}, Модель: {phone.model}, Ціна: {phone.price}")
+    else:
+        print("Телефонів фірми Motorola без ширококутної камери і з NFC не знайдено.")
+
+if __name__ == "__main__":
+    phones = input_phones()
+    motorola_phones = find_motorola_phones_without_wide_camera_and_nfc(phones)
+    print_phones(motorola_phones)
