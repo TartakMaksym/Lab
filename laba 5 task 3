@@ -1,0 +1,19 @@
+def main():
+    print("Введіть п'ять дійсних чисел:")
+    sum_sequence = 0
+    count = 0
+
+    for i in range(5):
+        while True:
+            try:
+                num = float(input("Введіть число: "))
+                sum_sequence += num
+                count += 1
+                average = sum_sequence / count
+                print(f"Сума: {sum_sequence}, Середнє арифметичне: {average}")
+                break
+            except ValueError:
+                print("Введено некоректне значення. Будь ласка, введіть дійсне число.")
+
+if __name__ == "__main__":
+    main()
