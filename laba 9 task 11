@@ -1,0 +1,36 @@
+def input_matrix(rows, cols):
+    matrix = []
+    for i in range(rows):
+        row = []
+        for j in range(cols):
+            print(f"Введіть елемент за індексом ({i},{j}): ")
+            element = int(input())
+            row.append(element)
+        matrix.append(row)
+    return matrix
+
+def find_min_max(matrix):
+    min_element = matrix[0][0]
+    max_element = matrix[0][0]
+    min_index = [0, 0]
+    max_index = [0, 0]
+    for i, row in enumerate(matrix):
+        for j, element in enumerate(row):
+            if element < min_element:
+                min_element = element
+                min_index = [i, j]
+            elif element > max_element:
+                max_element = element
+                max_index = [i, j]
+    return min_element, min_index, max_element, max_index
+
+def main():
+    rows = int(input("Введіть кількість рядків: "))
+    cols = int(input("Введіть кількість стовпців: "))
+    matrix = input_matrix(rows, cols)
+    min_element, min_index, max_element, max_index = find_min_max(matrix)
+    print(f"Мінімальний елемент: {min_element} на індекс {min_index}")
+    print(f"Максимальний елемент: {max_element} на індекс {max_index}")
+
+if __name__ == "__main__":
+    main()
