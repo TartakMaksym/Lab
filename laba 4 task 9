@@ -1,0 +1,28 @@
+def optimal_weight(height):
+    return height - 100
+
+def weight_recommendation(actual_weight, optimal_weight):
+    if actual_weight == optimal_weight:
+        return "Ви маєте оптимальну вагу."
+    elif actual_weight > optimal_weight:
+        return "Вам рекомендується cхуднути."
+    else:
+        return "Вам рекомендується поправитись."
+
+try:
+    height = float(input("Введіть ваш ріст у сантиметрах: "))
+    if height <= 0:
+        print("Помилка: Ріст повинен бути більше нуля.")
+    else:
+        optimal = optimal_weight(height)
+        print("Ваша оптимальна вага:", optimal, "кг")
+        
+        actual_weight = float(input("Введіть вашу фактичну вагу у кілограмах: "))
+        if actual_weight <= 0:
+            print("Помилка: Вага повинна бути більше нуля.")
+        else:
+            recommendation = weight_recommendation(actual_weight, optimal)
+            print(recommendation)
+except ValueError:
+    print("Помилка: Будь ласка, введіть числове значення для росту та ваги.")
+
