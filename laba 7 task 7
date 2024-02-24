@@ -1,0 +1,33 @@
+def input_2d_array(rows, cols):
+    array = []
+    for i in range(rows):
+        row = []
+        for j in range(cols):
+            row.append(float(input(f"Введіть елемент [{i}][{j}]: ")))
+        array.append(row)
+    return array
+
+def calculate_average(array):
+    flattened_array = [item for sublist in array for item in sublist]
+    min_value = min(flattened_array)
+    max_value = max(flattened_array)
+    total = 0
+    count = 0
+    for row in array:
+        for value in row:
+            if value != min_value and value != max_value:
+                total += value
+                count += 1
+    if count == 0:
+        return 0
+    return total / count
+
+def main():
+    rows = int(input("Введіть кількість рядків: "))
+    cols = int(input("Введіть кількість стовпців: "))
+    array = input_2d_array(rows, cols)
+    average = calculate_average(array)
+    print(f"Середнє арифметичне без урахування мінімального та максимального елементів: {average}")
+
+if __name__ == "__main__":
+    main()
