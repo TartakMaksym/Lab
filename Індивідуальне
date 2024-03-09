@@ -1,0 +1,51 @@
+class ExpertSystem:
+    def __init__(self):
+        self.knowledge_base = {}
+
+    def add_rule(self, symptoms, diagnosis):
+        for symptom in symptoms:
+            if symptom not in self.knowledge_base:
+                self.knowledge_base[symptom] = [diagnosis]
+            else:
+                self.knowledge_base[symptom].append(diagnosis)
+
+    def diagnose(self, symptoms):
+        unknown_symptoms = [symptom for symptom in symptoms if symptom not in self.knowledge_base]
+        if unknown_symptoms:
+            print("Невідомі симптоми:", unknown_symptoms)
+            return None
+        possible_diagnoses = set()
+        for symptom in symptoms:
+            possible_diagnoses.update(self.knowledge_base[symptom])
+        return possible_diagnoses
+
+# Приклад використання:
+system = ExpertSystem()
+
+# Додати правила в базу знань
+system.add_rule(['висока температура', 'кашель', 'біль у горлі', 'слабкість', 'біль у грудях'], 'грип')
+system.add_rule(['висока температура', 'кашель', 'біль у горлі', 'сльозотеча', 'нежить'], 'застуда')
+system.add_rule(['тиск в грудях', 'затримка дихання', 'пітливість', 'покриття холодним піт', 'страх'], 'паніка')
+system.add_rule(['біль у животі', 'відсутність апетиту', 'блювота', 'проблеми зі стільцем'], 'гастрит')
+system.add_rule(['біль у животі', 'запаморочення', 'понос', 'сильний спрага'], 'гостра кишкова інфекція')
+system.add_rule(['головний біль', 'біль в очах', 'фотофобія', 'запаморочення'], 'мігрень')
+system.add_rule(['температура', 'кашель', 'втрата смаку або нюху', 'біль у м’язах та суглобах', 'сльозотеча', 'затруднене дихання', 'перенасиченість киснем'], 'коронавірус')
+system.add_rule(['безсоння', 'нервозність', 'підвищена збудливість', 'панічні атаки'], 'тривожність')
+system.add_rule(['біль при русі', 'набряк', 'неможливість рухати кінцівку'], 'перелом')
+system.add_rule(['біль при дотику', 'синець', 'набряк'], 'забій')
+system.add_rule(['головний біль', 'запаморочення', 'потерпівший втрачає свідомість', 'блювота'], 'струс мозку')
+
+# Запитуємо в користувача симптоми
+print("Введіть ваші симптоми (через кому):")
+input_symptoms = input().split(', ')
+
+# Перевіряємо, чи введений симптом - число
+if any(symptom.isdigit() for symptom in input_symptoms):
+    print("Симптоми мають бути вказані словами, а не числами.")
+else:
+    # Діагноз
+    diagnosis = system.diagnose(input_symptoms)
+    if diagnosis:
+        print("Можливі діагнози:", ', '.join(diagnosis))
+    else:
+        print("На жаль, не вдалося визначити діагноз.")
